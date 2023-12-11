@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  attachment  Bytes?
+  userCreated String?
+  userCreatedEmail String?
+  activities  Activity[]
+}
+
+
+
+model Activity {
+  id            Int      @id @default(autoincrement())
+  name          String
+  percentage    Int      @default(0)
+  userName      String
+  userEmail      String?
+  start         DateTime
+  end           DateTime
+  status        String   @default("standby")
+  projectId     Int
+  project       Project @relation(fields: [projectId], references: [id])
+  subActivities SubActivity[]
+}
+
+
+model SubActivity {
+  id            Int    @id @default(autoincrement())
+  name          String
+  status        Boolean @default(false)
+  activityId    Int
+  activity      Activity @relation(fields: [activityId], references: [id])
+}

@@ -1,0 +1,115 @@
+
+/*
+ * -------------------------------------------------------
+ * THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+ * -------------------------------------------------------
+ */
+
+/* tslint:disable */
+/* eslint-disable */
+
+export class CreateActivityInput {
+    name: string;
+    percentage: number;
+    userName: string;
+    start: string;
+    end: string;
+    status: string;
+    projectId: number;
+}
+
+export class UpdateActivityInput {
+    id: number;
+    name?: Nullable<string>;
+    percentage?: Nullable<number>;
+    userName?: Nullable<string>;
+    start?: Nullable<string>;
+    end?: Nullable<string>;
+    status?: Nullable<string>;
+    projectId?: Nullable<number>;
+}
+
+export class CreateProjectInput {
+    name: string;
+    activities?: Nullable<Nullable<number>[]>;
+}
+
+export class UpdateProjectInput {
+    id: number;
+    name?: Nullable<string>;
+    activities?: Nullable<Nullable<number>[]>;
+}
+
+export class CreateSubActivityInput {
+    name: string;
+    status: string;
+    activityId: number;
+}
+
+export class UpdateSubActivityInput {
+    id: number;
+    name?: Nullable<string>;
+    status?: Nullable<string>;
+    activityId?: Nullable<number>;
+}
+
+export class Activity {
+    id: number;
+    name: string;
+    percentage: number;
+    userName: string;
+    start: string;
+    end: string;
+    status: string;
+    projectId: number;
+    subActivities: SubActivity[];
+}
+
+export abstract class IQuery {
+    abstract activities(): Activity[] | Promise<Activity[]>;
+
+    abstract activity(id: number): Nullable<Activity> | Promise<Nullable<Activity>>;
+
+    abstract projects(): Nullable<Project>[] | Promise<Nullable<Project>[]>;
+
+    abstract project(id: number): Nullable<Project> | Promise<Nullable<Project>>;
+
+    abstract subActivity(id: number): Nullable<SubActivity> | Promise<Nullable<SubActivity>>;
+
+    abstract allSubActivities(): Nullable<Nullable<SubActivity>[]> | Promise<Nullable<Nullable<SubActivity>[]>>;
+}
+
+export abstract class IMutation {
+    abstract createActivity(createActivityInput: CreateActivityInput): Activity | Promise<Activity>;
+
+    abstract updateActivity(updateActivityInput: UpdateActivityInput): Activity | Promise<Activity>;
+
+    abstract removeActivity(id: number): Nullable<Activity> | Promise<Nullable<Activity>>;
+
+    abstract createProject(createProjectInput: CreateProjectInput): Project | Promise<Project>;
+
+    abstract updateProject(updateProjectInput: UpdateProjectInput): Project | Promise<Project>;
+
+    abstract removeProject(id: number): Nullable<Project> | Promise<Nullable<Project>>;
+
+    abstract createSubActivity(createSubActivityInput: CreateSubActivityInput): SubActivity | Promise<SubActivity>;
+
+    abstract updateSubActivity(updateSubActivityInput: UpdateSubActivityInput): Nullable<SubActivity> | Promise<Nullable<SubActivity>>;
+
+    abstract removeSubActivity(id: number): Nullable<SubActivity> | Promise<Nullable<SubActivity>>;
+}
+
+export class Project {
+    id?: Nullable<number>;
+    name?: Nullable<string>;
+    activities?: Nullable<Nullable<Activity>[]>;
+}
+
+export class SubActivity {
+    id: number;
+    name: string;
+    status: string;
+    activityId: number;
+}
+
+type Nullable<T> = T | null;
